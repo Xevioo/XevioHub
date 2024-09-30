@@ -4,7 +4,7 @@ theme: linkhub-jekyll-theme
 # Site Configuration
 name: XevioHub  # Name of your website
 tagline: Links  # Set your preferred page title
-description: My official link hub for all my related Tutorials & Services.  # Also used as a meta description
+description: My official link hub for all related Tutorials & Services.  # Also used as a meta description
 favicon:
   path: https://i.ibb.co/yBW4z8t/favicon-32x32.png # Path / URL to the favicon of your website (e.g., 'assets/images/favicon.png')
   type: png # File format of image. Change according to your image. Supported types: https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
