@@ -13,7 +13,7 @@ buttons:
     items:
 
     - title: Aurora Signer
-      url: https://api.khoindvn.eu.org/4OftbN
+      url: https://aurorasigner.xyz
       icon: tdesign:link
       tag: WEB
 
@@ -30,12 +30,21 @@ buttons:
       icon: tdesign:check
 
     - title: Current Signed Cert
-      url: https://api.khoindvn.eu.org/4OftbN
+      url: https://drive.google.com/file/d/1j7-6iNvVjUmlK6zDzo1Y3bT6bNuP645q/view?usp=sharing
       icon: tdesign:check
       
-  - category: Works
+  - category: DNS Profiles / Confligs
     items:
-    - title: Example 4
-      url: https://www.example.org
-      icon: ion:flower-sharp
-      tag: New
+    
+    - title: No Revoke & Adblock DNS
+      url: https://drive.google.com/file/d/1lrF0O-D_gZyfeH_dmLJdzxqhKQG77PmG/view?usp=sharing
+      icon: ion:cog
+      
+    - title: No Revoke Only
+      url: https://drive.google.com/file/d/1pbTIY-E-puqEdnOF3RPpeQcp4fB2Jh9g/view?usp=sharing
+      icon: ion:cog
+
+    - title: SideStore Config
+      url: https://drive.google.com/file/d/1mtTeyjkPsuaqvbdVAGG87N6hH5nTyiGs/view?usp=sharing
+      icon: ion:cog
+      
