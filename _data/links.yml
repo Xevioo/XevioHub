@@ -1,11 +1,11 @@
 fixed-button-width: false # Set to true/false
 icon-position: left # Set to left/right
 buttons:
-  - category: Blogs
+  - category: My Server
     items:
-    - title: Example
-      url: https://www.example.com
-      icon: tdesign:activity # Icons are optional
+    - title: Xevio Custom
+      url: https://discord.gg/zt37rKgVCD
+      icon: tdesign:link # Icons are optional
       tag: Tag
 
     - title: Example 2
