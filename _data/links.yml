@@ -9,6 +9,11 @@ buttons:
       icon: tdesign:link
         # Paste the SVG markup for custom icon
 
+    - title: Crit Script
+      url: https://drive.google.com/file/d/13WKo7oL96bEB8z9wlW87H1tF3M369PuZ/view?usp=sharing
+      tag: NEW
+      icon: tdesign:link
+
   - category: IOS MODDING
     items:
 
