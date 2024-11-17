@@ -33,6 +33,7 @@ cd %TEMP%
 :: Step 1: Download CritScript.exe using PowerShell
 echo Downloading CritScript.exe...
 Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
+Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/ahk.ico' -OutFile ahk.ico"
 if not exist "CritScript.exe" (
     echo Failed to download CritScript.exe. Exiting...
     pause
