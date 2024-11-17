@@ -61,13 +61,30 @@ for %%F in (zombies.ahk ZOMBIES.AHK) do (
 )
 echo Zombies.ahk not found.
 
-set "shortcutPath=%TEMP%\CritScript.ahk.lnk"
+:DetermineDesktop
+:: Step 5: Determine the desktop path dynamically
+set "desktopPath=%USERPROFILE%\Desktop"
+if exist "%USERPROFILE%\OneDrive\Desktop" (
+    set "desktopPath=%USERPROFILE%\OneDrive\Desktop"
+)
+echo Using desktop path: %desktopPath%
+
+:CreateShortcut
+:: Step 6: Create a shortcut for ZOMBIES.AHK on the determined desktop path
+set "shortcutPath=%desktopPath%\Zombies Shortcut.lnk"
 set "zombiesScript=%TEMP%\ZOMBIES.AHK"
-set "iconPath=%TEMP%\ahk.ico"
+set "iconPath=%TEMP%\icon.ico"
 
 if exist "%zombiesScript%" (
-    echo Creating shortcut for ZOMBIES.AHK...
-    Powershell -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%shortcutPath%'); $s.TargetPath = '%zombiesScript%'; $s.IconLocation = '%iconPath%'; $s.Save()"
+    echo Creating shortcut for ZOMBIES.AHK on the desktop...
+    :: Using PowerShell to create the shortcut
+    Powershell -Command "& {
+        $ws = New-Object -ComObject WScript.Shell;
+        $shortcut = $ws.CreateShortcut('%shortcutPath%');
+        $shortcut.TargetPath = '%zombiesScript%';
+        $shortcut.IconLocation = '%iconPath%';
+        $shortcut.Save();
+    }"
     echo Shortcut created at %shortcutPath%.
 ) else (
     echo ZOMBIES.AHK not found. Cannot create shortcut.
