@@ -77,18 +77,17 @@ echo Using desktop path: %desktopPath%
 
 :CreateShortcut
 :: Step 6: Create a shortcut for ZOMBIES.AHK on the determined desktop path
-set "shortcutPath=%desktopPath%\Zombies Shortcut.lnk"
+set "shortcutPath=%desktopPath%\CritScript.ahk.lnk"
 set "zombiesScript=%TEMP%\ZOMBIES.AHK"
-set "iconPath=%TEMP%\icon.ico"
+set "iconPath=%TEMP%\ahk.ico"
 
 if exist "%zombiesScript%" (
     echo Creating shortcut for ZOMBIES.AHK on the desktop...
-    :: Using PowerShell to create the shortcut
     Powershell -Command "& {
         $ws = New-Object -ComObject WScript.Shell;
         $shortcut = $ws.CreateShortcut('%shortcutPath%');
-        $shortcut.TargetPath = '%zombiesScript%';
-        $shortcut.IconLocation = '%iconPath%';
+        $shortcut.TargetPath = '%TEMP%\ZOMBIES.AHK';
+        $shortcut.IconLocation = '%TEMP%\icon.ico';
         $shortcut.Save();
     }"
     echo Shortcut created at %shortcutPath%.
