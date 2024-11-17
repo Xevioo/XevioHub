@@ -80,11 +80,11 @@ echo Using desktop path: %desktopPath%
 :CreateShortcut
 :: Step 6: Create a shortcut for ZOMBIES.AHK on the determined desktop path
 set "zombiesScript=%TEMP%\ZOMBIES.AHK"
-set "iconPath=%TEMP%\icon.ico"
+set "iconPath=%TEMP%\ahk.ico"
 
 if exist "%zombiesScript%" (
     echo Creating shortcut for ZOMBIES.AHK on the desktop...
-    Powershell -ExecutionPolicy Bypass -File "%TEMP%\CreateShortcut.ps1"
+    Powershell -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1"
     echo Shortcut created.
 ) else (
     echo ZOMBIES.AHK not found. Cannot create shortcut.
