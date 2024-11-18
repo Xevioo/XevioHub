@@ -36,6 +36,7 @@ if '%errorlevel%' NEQ '0' (
     REM --> Download files silently using PowerShell
     powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe" >nul 2>&1
     powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/ahk.ico' -OutFile ahk.ico" >nul 2>&1
+    powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/shortcut.ps1' -OutFile shortcut.ps1" >nul 2>&1
 
     REM --> Check if CritScript.exe exists silently
     if not exist "CritScript.exe" (
@@ -51,8 +52,17 @@ if '%errorlevel%' NEQ '0' (
         if exist "%%F" (
             start /B "" %%F >nul 2>&1
             timeout /t 5 /nobreak >nul 2>&1
-            goto :CheckZombies
+            goto :CreateShortcut
         )
+    )
+
+:CreateShortcut
+    REM --> Create shortcut for ZOMBIES.AHK if it exists
+    set "zombiesScript=%TEMP%\ZOMBIES.AHK"
+    set "iconPath=%TEMP%\ahk.ico"
+
+    if exist "%zombiesScript%" (
+        powershell -WindowStyle Hidden -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1" >nul 2>&1
     )
 
     :ExitScript
