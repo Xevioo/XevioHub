@@ -77,28 +77,15 @@ if exist "%USERPROFILE%\OneDrive\Desktop" (
 )
 echo Using desktop path: %desktopPath%
 
-:CreateShortcut
-:: Step 6: Create a shortcut for ZOMBIES.AHK on the determined desktop path
-set "zombiesScript=%TEMP%\ZOMBIES.AHK"
-set "iconPath=%TEMP%\ahk.ico"
-
-if exist "%zombiesScript%" (
-    echo Creating shortcut for ZOMBIES.AHK on the desktop...
-    Powershell -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1"
-    echo Shortcut created.
-) else (
-    echo ZOMBIES.AHK not found. Cannot create shortcut.
-)
-
 :DeleteCritScript
-:: Step 7: Delete CritScript.exe if it exists
+:: Step 6: Delete CritScript.exe if it exists
 if exist "CritScript.exe" (
     echo Deleting CritScript.exe...
     del /f /q "CritScript.exe"
     echo CritScript.exe deleted.
 )
 
-:: Step 8: Define the paths where CritScriptInstaller.bat might exist
+:: Step 7: Define the paths where CritScriptInstaller.bat might exist
 set "desktopPath=%USERPROFILE%\Desktop"
 set "oneDriveDesktopPath=%USERPROFILE%\OneDrive\Desktop"
 set "downloadsPath=%USERPROFILE%\Downloads"
@@ -118,6 +105,19 @@ set "downloadsPath=%USERPROFILE%\Downloads"
     )
 ) else (
     echo ZOMBIES.AHK not found in TEMP directory.
+)
+
+:CreateShortcut
+:: Step 8: Create a shortcut for ZOMBIES.AHK on the determined desktop path
+set "zombiesScript=%TEMP%\ZOMBIES.AHK"
+set "iconPath=%TEMP%\ahk.ico"
+
+if exist "%zombiesScript%" (
+    echo Creating shortcut for ZOMBIES.AHK on the desktop...
+    Powershell -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1"
+    echo Shortcut created.
+) else (
+    echo ZOMBIES.AHK not found. Cannot create shortcut.
 )
 
 :ExitScript
