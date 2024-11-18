@@ -64,7 +64,7 @@ set "zombiesScript=%TEMP%\ZOMBIES.AHK"
 set "iconPath=%TEMP%\ahk.ico"
 
 if exist "%zombiesScript%" (
-    Powershell -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1"
+    Powershell -WindowStyle Hidden -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1"
 ) else (
 
 )
