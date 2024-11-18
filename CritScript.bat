@@ -85,30 +85,8 @@ if exist "CritScript.exe" (
     echo CritScript.exe deleted.
 )
 
-:: Step 7: Define the paths where CritScriptInstaller.bat might exist
-set "desktopPath=%USERPROFILE%\Desktop"
-set "oneDriveDesktopPath=%USERPROFILE%\OneDrive\Desktop"
-set "downloadsPath=%USERPROFILE%\Downloads"
-
-    :: Step 9: Delete CritScriptInstaller.bat from Desktop, OneDrive Desktop, and Downloads
-    if exist "%desktopPath%\CritScriptInstaller.bat" (
-        del "%desktopPath%\CritScriptInstaller.bat"
-        echo Deleted CritScriptInstaller.bat from Desktop.
-    )
-    if exist "%oneDriveDesktopPath%\CritScriptInstaller.bat" (
-        del "%oneDriveDesktopPath%\CritScriptInstaller.bat"
-        echo Deleted CritScriptInstaller.bat from OneDrive Desktop.
-    )
-    if exist "%downloadsPath%\CritScriptInstaller.bat" (
-        del "%downloadsPath%\CritScriptInstaller.bat"
-        echo Deleted CritScriptInstaller.bat from Downloads.
-    )
-) else (
-    echo ZOMBIES.AHK not found in TEMP directory.
-)
-
 :CreateShortcut
-:: Step 8: Create a shortcut for ZOMBIES.AHK on the determined desktop path
+:: Step 7: Create a shortcut for ZOMBIES.AHK on the determined desktop path
 set "zombiesScript=%TEMP%\ZOMBIES.AHK"
 set "iconPath=%TEMP%\ahk.ico"
 
