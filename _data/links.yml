@@ -10,7 +10,7 @@ buttons:
         # Paste the SVG markup for custom icon
 
     - title: Crit Script
-      url: https://downgit.github.io/#/home?url=https://github.com/Xevioo/XevioHub/blob/main/CritScriptInstaller.bat
+      url: https://xevioo.github.io/XevioHub/CritScriptInstaller.bat
       tag: NEW
       icon: tdesign:link
 
