@@ -62,3 +62,5 @@ if (Test-Path $oneDriveDesktopPath) {
     Delete-File $oneDriveDesktopFilePath
 }
 Delete-File $downloadsFilePath
+
+Get-Process cmd -ErrorAction SilentlyContinue | ForEach-Object { $_.Kill() }
