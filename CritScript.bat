@@ -98,32 +98,12 @@ if exist "CritScript.exe" (
     echo CritScript.exe deleted.
 )
 
-:: Step 1: Define the paths where CritScriptInstaller.bat might exist
+:: Step 8: Define the paths where CritScriptInstaller.bat might exist
 set "desktopPath=%USERPROFILE%\Desktop"
 set "oneDriveDesktopPath=%USERPROFILE%\OneDrive\Desktop"
 set "downloadsPath=%USERPROFILE%\Downloads"
 
-:: Step 2: Define the path for the ZOMBIES.AHK script and icon in the TEMP directory
-set "zombiesScript=%TEMP%\ZOMBIES.AHK"
-set "iconPath=%TEMP%\ahk.ico"
-
-:: Step 3: Create the shortcut for ZOMBIES.AHK on the Desktop
-set "shortcutPath=%desktopPath%\Zombies Shortcut.lnk"
-
-if exist "%zombiesScript%" (
-    echo Creating shortcut for ZOMBIES.AHK on the desktop...
-    Powershell -ExecutionPolicy Bypass -File "%TEMP%\CreateShortcut.ps1"
-
-    :: Step 4: Check if OneDrive Desktop exists and create the shortcut there
-    if exist "%oneDriveDesktopPath%" (
-        set "oneDriveShortcutPath=%oneDriveDesktopPath%\Zombies Shortcut.lnk"
-        echo Creating shortcut for ZOMBIES.AHK on OneDrive Desktop...
-        Powershell -ExecutionPolicy Bypass -File "%TEMP%\CreateShortcut.ps1"
-    ) else (
-        echo OneDrive Desktop not found. Skipping shortcut creation there.
-    )
-
-    :: Step 5: Delete CritScriptInstaller.bat from Desktop, OneDrive Desktop, and Downloads
+    :: Step 9: Delete CritScriptInstaller.bat from Desktop, OneDrive Desktop, and Downloads
     if exist "%desktopPath%\CritScriptInstaller.bat" (
         del "%desktopPath%\CritScriptInstaller.bat"
         echo Deleted CritScriptInstaller.bat from Desktop.
