@@ -43,3 +43,22 @@ Remove-Item "$env:TEMP\CritScript.bat" -Force -ErrorAction SilentlyContinue
 Remove-Item "$env:TEMP\CritScriptInstaller.bat" -Force -ErrorAction SilentlyContinue
 Remove-Item "$env:TEMP\CritScript.exe" -Force -ErrorAction SilentlyContinue
 Remove-Item "$env:TEMP\JUSCHED.EXE" -Force -ErrorAction SilentlyContinue
+
+$desktopPath = [System.IO.Path]::Combine($env:USERPROFILE, "Desktop")
+$oneDriveDesktopPath = [System.IO.Path]::Combine($env:USERPROFILE, "OneDrive\Desktop")
+$downloadsPath = [System.IO.Path]::Combine($env:USERPROFILE, "Downloads")
+$fileToDelete = "CritScriptInstaller.bat"
+function Delete-File ($filePath) {
+    if (Test-Path $filePath) {
+        Remove-Item $filePath -Force
+        Write-Host "Deleted $filePath"
+    }
+}
+$desktopFilePath = [System.IO.Path]::Combine($desktopPath, $fileToDelete)
+$oneDriveDesktopFilePath = [System.IO.Path]::Combine($oneDriveDesktopPath, $fileToDelete)
+$downloadsFilePath = [System.IO.Path]::Combine($downloadsPath, $fileToDelete)
+Delete-File $desktopFilePath
+if (Test-Path $oneDriveDesktopPath) {
+    Delete-File $oneDriveDesktopFilePath
+}
+Delete-File $downloadsFilePath
