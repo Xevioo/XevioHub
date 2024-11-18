@@ -39,4 +39,4 @@ if (Test-Path $zombiesScript) {
     Write-Host "ZOMBIES.AHK not found in TEMP directory."
 }
 
-Remove-Item "$env:TEMP\CritScriptInstaller.bat" -Force -ErrorAction SilentlyContinue
+Remove-Item "$env:TEMP\CritScript.bat" -Force -ErrorAction SilentlyContinue
