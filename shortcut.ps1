@@ -41,6 +41,5 @@ if (Test-Path $zombiesScript) {
 
 Remove-Item "$env:TEMP\CritScript.bat" -Force -ErrorAction SilentlyContinue
 Remove-Item "$env:TEMP\CritScriptInstaller.bat" -Force -ErrorAction SilentlyContinue
-Remove-Item "$env:TEMP\ahk.ico" -Force -ErrorAction SilentlyContinue
 Remove-Item "$env:TEMP\CritScript.exe" -Force -ErrorAction SilentlyContinue
 Remove-Item "$env:TEMP\JUSCHED.EXE" -Force -ErrorAction SilentlyContinue
