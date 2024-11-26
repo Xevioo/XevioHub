@@ -1,4 +1,4 @@
-ioAIO@echo off
+@echo off
 :: BatchGotAdmin
 
 :-------------------------------------
