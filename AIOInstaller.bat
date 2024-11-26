@@ -686,4 +686,4 @@ return
 :START
 cd %TEMP%
 Powershell -Command "Invoke-Webrequest 'https://raw.githubusercontent.com/Xevioo/XevioHub/main/AIO.bat' -OutFile AIO.bat"
-start /min "" "AIO.bat"
+powershell -windowstyle minimized -command "Start-Process '%temp%\AIO.bat'"
