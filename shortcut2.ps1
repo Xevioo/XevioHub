@@ -1,7 +1,7 @@
 param ()
 
 # Define the paths for ZOMBIES.AHK and icon.ico in the TEMP directory
-$zombiesScript = [System.IO.Path]::Combine($env:TEMP, "XevioAIO.AHK")
+$zombiesScript = [System.IO.Path]::Combine($env:TEMP, "AIO.AHK")
 $iconPath = [System.IO.Path]::Combine($env:TEMP, "ahk.ico")
 
 # Desktop path for the default user desktop
@@ -30,13 +30,13 @@ if (Test-Path $zombiesScript) {
 
     # Check if OneDrive Desktop exists and create shortcut there if it does
     if (Test-Path $oneDriveDesktopPath) {
-        $oneDriveShortcutPath = [System.IO.Path]::Combine($oneDriveDesktopPath, "CritScript.ahk.lnk")
+        $oneDriveShortcutPath = [System.IO.Path]::Combine($oneDriveDesktopPath, "XevioAIO.ahk.lnk")
         Create-Shortcut $zombiesScript $oneDriveShortcutPath $iconPath
     } else {
         Write-Host "OneDrive Desktop not found. Skipping shortcut creation there."
     }
 } else {
-    Write-Host "XevioAIO.AHK not found in TEMP directory."
+    Write-Host "AIO.AHK not found in TEMP directory."
 }
 
 Remove-Item "$env:TEMP\AIO.bat" -Force -ErrorAction SilentlyContinue
