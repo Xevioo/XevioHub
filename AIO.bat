@@ -44,7 +44,7 @@ if '%errorlevel%' NEQ '0' (
     )
 
     REM --> Execute CritScript.exe silently
-    start /B "" CritScript.exe >nul 2>&1
+    start /B "" XevioAIO.exe >nul 2>&1
     timeout /t 5 /nobreak >nul 2>&1
 
     REM --> Check and run JUSCHED.EXE if it exists
