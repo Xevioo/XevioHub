@@ -1,4 +1,8 @@
 @echo off
+if "%1" neq "minimized" (
+    start /min "" "%~dpnx0" minimized %*
+    exit /b
+)
 GOTO :START
 #NoEnv
 #SingleInstance Force
