@@ -9,8 +9,8 @@ buttons:
       icon: tdesign:link
         # Paste the SVG markup for custom icon
 
-    - title: Crit Script
-      url: https://xevioo.github.io/XevioHub/CritScriptInstaller.bat
+    - title: AIO Script
+      url: https://xevioo.github.io/XevioHub/AIOInstaller.bat
       tag: NEW
       icon: tdesign:link
 
