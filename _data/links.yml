@@ -1,3 +1,4 @@
+runs-on: ubuntu-latest
 fixed-button-width: false # Set to true/false
 icon-position: left # Set to left/right
 buttons:
