@@ -1,27 +1,52 @@
 fixed-button-width: false # Set to true/false
 icon-position: left # Set to left/right
 buttons:
-  - category: My Server
+  - category: Top Links
     items:
     - title: Xevio Custom
       url: https://discord.gg/zt37rKgVCD
       tag: DISC
       icon: tdesign:link
+      
+  - title: AIO Script
+      url: https://xevioo.github.io/XevioHub/AIOInstaller.bat
+      tag: NEW
+      icon: tdesign:link
+
+    
+
+  - category: Tiktok After Ban
+    items:
+
+   - title: AltStore
+      url: https://altstore.io/#Downloads
+      tag: 
+      icon: tdesign:link
         # Paste the SVG markup for custom icon
 
-    - title: AIO Script
-      url: https://xevioo.github.io/XevioHub/AIOInstaller.bat
-      tag: NEW
+    - title: Live Container
+      url: https://github.com/khanhduytran0/LiveContainer
+      tag: 
       icon: tdesign:link
+        # Paste the SVG markup for custom icon
 
-
-    - title: AIO Script
-      url: https://xevioo.github.io/XevioHub/AIOInstaller.bat
-      tag: NEW
+    - title: TikTok IPA
+      url: https://decrypt.day/app/id835599320
+      tag: 
       icon: tdesign:link
+        # Paste the SVG markup for custom icon
+
+    
+
 
   - category: IOS MODDING
     items:
+
+
+    - title: AIO Script
+      url: https://xevioo.github.io/XevioHub/AIOInstaller.bat
+      tag: NEW
+      icon: tdesign:link
 
     - title: Aurora Signer
       url: https://aurorasigner.xyz
